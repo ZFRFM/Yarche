@@ -4,15 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import ru.faimizufarov.yarche.navigation.AppNavHost
 import ru.faimizufarov.yarche.navigation.BottomNavItem
 import ru.faimizufarov.yarche.navigation.YarcheNavigationBar
-import ru.faimizufarov.yarche.ui.screen.HelloScreen
+import ru.faimizufarov.yarche.ui.screen.HelloScreenBase
 import ru.faimizufarov.yarche.ui.theme.YarcheTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,12 +43,9 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) { innerPadding ->
-                    HelloScreen(
-                        modifier = Modifier.padding(innerPadding),
-                        name = "check",
-                        onNameChange = {  },
-                        onStart = {  }
-                    )
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        AppNavHost(navController)
+                    }
                 }
             }
         }

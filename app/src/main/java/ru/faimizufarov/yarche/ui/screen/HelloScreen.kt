@@ -33,7 +33,12 @@ import ru.faimizufarov.yarche.R
 import ru.faimizufarov.yarche.ui.theme.YarcheTheme
 
 @Composable
-fun HelloScreen(
+fun HelloScreen() {
+
+}
+
+@Composable
+fun HelloScreenBase(
     modifier: Modifier = Modifier,
     name: String,
     onNameChange: () -> Unit,
@@ -108,7 +113,7 @@ fun HelloScreen(
 @Composable
 fun PreviewHelloScreen() {
     YarcheTheme {
-        HelloScreen(
+        HelloScreenBase(
             name = "check",
             onNameChange = {  },
             onStart = {  }

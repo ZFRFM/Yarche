@@ -13,10 +13,10 @@ sealed class BottomNavItem(var title: Int, var icon: Int, var screenRoute: Strin
         R.drawable.test_icon,
         "test_screen"
     )
-    data object RecommendationScreen: BottomNavItem(
-        R.string.recommendation,
-        R.drawable.recommendation_icon,
-        "recommendation_screen"
+    data object TasksScreen: BottomNavItem(
+        R.string.tasks,
+        R.drawable.tasks_icon,
+        "tasks_screen"
     )
     data object SettingsScreen: BottomNavItem(
         R.string.settings,

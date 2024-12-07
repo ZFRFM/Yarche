@@ -3,4 +3,8 @@
     <string name="hello_text">Привет, меня зовут Лариса!\nЯ помогу тебе победить выгорание)\nДавай знакомиться!\nКак тебя зовут?</string>
     <string name="what_is_your_name">Как тебя зовут?</string>
     <string name="lets_go">Поехали</string>
+    <string name="progress">Прогресс</string>
+    <string name="test">Тест</string>
+    <string name="recommendation">Рекомендации</string>
+    <string name="settings">Настройки</string>
 </resources>

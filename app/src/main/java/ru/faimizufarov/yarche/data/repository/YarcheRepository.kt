@@ -22,9 +22,9 @@ class YarcheRepository(
             database.nameDao().insertName(name.toNameEntity())
         }
 
-    suspend fun checkNamePresence() =
+    suspend fun isNamePresent() =
         withContext(Dispatchers.IO) {
-            if (database.nameDao().checkNamePresence() == 0) false else true
+            database.nameDao().checkNamePresence() != 0
         }
 
     private fun Name.toNameEntity() =

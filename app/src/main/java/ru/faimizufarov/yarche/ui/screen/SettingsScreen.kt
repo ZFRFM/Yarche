@@ -50,9 +50,11 @@ fun SettingsScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
         Card(
             modifier = Modifier

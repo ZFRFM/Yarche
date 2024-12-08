@@ -15,9 +15,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import ru.faimizufarov.yarche.ui.theme.YarcheTheme
 
 @Composable
 fun YarcheNavigationBar(
@@ -33,7 +36,7 @@ fun YarcheNavigationBar(
     Column(
         modifier = Modifier
     ) {
-        HorizontalDivider(color = Color(0xFFC4C7C8), thickness = 1.dp)
+        HorizontalDivider(color = MaterialTheme.colorScheme.background, thickness = 1.dp)
 
         NavigationBar(
             modifier = Modifier,
@@ -75,5 +78,14 @@ fun YarcheNavigationBar(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewNavigationBar() {
+    YarcheTheme {
+        val navController = rememberNavController()
+        YarcheNavigationBar(navController)
     }
 }

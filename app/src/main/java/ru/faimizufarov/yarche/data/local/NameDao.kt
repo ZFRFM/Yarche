@@ -9,7 +9,7 @@ import androidx.room.Update
 @Dao
 interface NameDao {
     @Query("SELECT * FROM name WHERE id= :id")
-    suspend fun getName(id: Int): NameEntity
+    suspend fun getName(id: Int): NameEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertName(nameEntity: NameEntity)

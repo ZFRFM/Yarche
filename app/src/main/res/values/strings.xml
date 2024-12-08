@@ -7,4 +7,5 @@
     <string name="test">Тест</string>
     <string name="tasks">Задания</string>
     <string name="settings">Настройки</string>
+    <string name="empty_name_error">У тебя ведь должно быть имя...</string>
 </resources>

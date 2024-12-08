@@ -19,7 +19,7 @@ class HelloViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _userNameText.value = yarcheRepository.getUserName().name
+            _userNameText.value = yarcheRepository.getUserName()?.name
         }
     }
 

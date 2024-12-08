@@ -7,6 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import ru.faimizufarov.yarche.ui.screen.HelloScreen
+import ru.faimizufarov.yarche.ui.screen.ProgressScreen
+import ru.faimizufarov.yarche.ui.screen.SettingsScreen
+import ru.faimizufarov.yarche.ui.screen.TasksScreen
+import ru.faimizufarov.yarche.ui.screen.TestScreen
 
 @Composable
 fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
@@ -17,23 +21,23 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) 
         modifier = Modifier
     ) {
         navigation(
-            startDestination = BottomNavItem.TestScreen.screenRoute,
+            startDestination = BottomNavItem.SettingsScreen.screenRoute,
             route = NavItems.BOTTOM_GRAPH
         ) {
             composable(BottomNavItem.ProgressScreen.screenRoute) {
-                TODO("Implement screen")
+                ProgressScreen()
             }
 
             composable(BottomNavItem.TestScreen.screenRoute) {
-                TODO("Implement screen")
+                TestScreen()
             }
 
             composable(BottomNavItem.TasksScreen.screenRoute) {
-                TODO("Implement screen")
+                TasksScreen()
             }
 
             composable(BottomNavItem.SettingsScreen.screenRoute) {
-                TODO("Implement screen")
+                SettingsScreen()
             }
         }
 

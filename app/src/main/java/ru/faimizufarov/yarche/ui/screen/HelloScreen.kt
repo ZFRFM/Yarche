@@ -82,7 +82,7 @@ fun HelloScreenBase(
     onStart: () -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    val coroutineScope = rememberCoroutineScope()
+    var localName by rememberSaveable { mutableStateOf("") }
     var isError by rememberSaveable { mutableStateOf(false) }
 
     Column(
@@ -111,6 +111,18 @@ fun HelloScreenBase(
 
         Spacer(modifier = Modifier.weight(1f))
 
+        if (isError) {
+            Text(
+                text = stringResource(R.string.empty_name_error),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 30.dp)
+                    .padding(bottom = 8.dp),
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall,
+            )
+        }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -123,7 +135,8 @@ fun HelloScreenBase(
                 value = name,
                 onValueChange = {
                     onNameChange(it)
-                    isError = name.isBlank()
+                    localName = it
+                    isError = localName.isBlank()
                 },
                 modifier = Modifier
                     .padding(end = 8.dp)
@@ -138,42 +151,29 @@ fun HelloScreenBase(
                 ),
                 keyboardActions = KeyboardActions(
                     onDone = {
-                        coroutineScope.launch {
-                            if (!isError) {
-                                onStart()
-                                delay(100)
-                                keyboardController?.hide()
-                            }
+                        if (!isError) {
+                            keyboardController?.hide()
+                            onStart()
                         }
                     }
                 ),
                 shape = RoundedCornerShape(16.dp),
                 colors = TextFieldDefaults.colors(
                     focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
+                    unfocusedIndicatorColor = Color.Transparent,
+                    errorIndicatorColor = Color.Transparent
                 )
             )
 
             Button(
                 onClick = { onStart() },
                 modifier = Modifier.wrapContentWidth(),
-                enabled = isError
+                enabled = localName.isNotBlank()
             ) {
                 Text(
                     text = stringResource(R.string.lets_go)
                 )
             }
-        }
-        if (isError) {
-            Text(
-                text = stringResource(R.string.empty_name_error),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 8.dp),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-            )
         }
     }
 }

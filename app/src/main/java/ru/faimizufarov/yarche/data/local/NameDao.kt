@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 
 @Dao
 interface NameDao {
@@ -13,9 +12,6 @@ interface NameDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertName(nameEntity: NameEntity)
-
-    @Update
-    suspend fun updateName(nameEntity: NameEntity)
 
     @Query("SELECT COUNT(*) FROM name")
     suspend fun checkNamePresence(): Int

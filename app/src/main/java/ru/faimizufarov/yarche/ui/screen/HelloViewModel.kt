@@ -23,9 +23,10 @@ class HelloViewModel @Inject constructor(
         }
     }
 
-    fun saveUserName(name: Name) {
+    fun updateUserName(name: Name) {
         viewModelScope.launch {
-            yarcheRepository.saveUserName(name)
+            yarcheRepository.updateUserName(name)
+            _userNameText.value = yarcheRepository.getUserName()?.name
         }
     }
 }

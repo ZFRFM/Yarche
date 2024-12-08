@@ -17,11 +17,14 @@ class YarcheRepository(
             database.nameDao().getName(0)
         }
 
-    suspend fun saveUserName(name: Name) =
+    suspend fun updateUserName(name: Name) =
         withContext(Dispatchers.IO) {
-            if (database.nameDao().checkNamePresence() == 0)
-                database.nameDao().insertName(name.toNameEntity())
-            else database.nameDao().updateName(name.toNameEntity())
+            database.nameDao().insertName(name.toNameEntity())
+        }
+
+    suspend fun checkNamePresence() =
+        withContext(Dispatchers.IO) {
+            if (database.nameDao().checkNamePresence() == 0) false else true
         }
 
     private fun Name.toNameEntity() =

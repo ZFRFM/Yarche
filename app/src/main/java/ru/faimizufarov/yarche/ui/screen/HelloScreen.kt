@@ -19,6 +19,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,19 +33,41 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import ru.faimizufarov.yarche.R
+import ru.faimizufarov.yarche.data.models.Name
+import ru.faimizufarov.yarche.navigation.NavItems
 import ru.faimizufarov.yarche.ui.theme.YarcheTheme
 
 @Composable
-fun HelloScreen() {
+fun HelloScreen(
+    modifier: Modifier = Modifier,
+    helloViewModel: HelloViewModel = hiltViewModel(),
+    navController: NavController
+) {
+    var userName by rememberSaveable { mutableStateOf("") }
 
+    HelloScreenBase(
+        modifier = Modifier,
+        name = userName,
+        onNameChange = { userName = it }
+    ) {
+        helloViewModel.saveUserName(
+            Name(
+                id = 0,
+                name = userName
+            )
+        )
+        navController.navigate(NavItems.BOTTOM_GRAPH)
+    }
 }
 
 @Composable
 fun HelloScreenBase(
     modifier: Modifier = Modifier,
     name: String,
-    onNameChange: () -> Unit,
+    onNameChange: (String) -> Unit,
     onStart: () -> Unit
 ) {
     Column(
@@ -71,7 +97,7 @@ fun HelloScreenBase(
         Spacer(modifier = Modifier.weight(1f))
 
         Row(
-            modifier =Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min)
                 .padding(
@@ -83,7 +109,7 @@ fun HelloScreenBase(
         ) {
             TextField(
                 value = name,
-                onValueChange = { onNameChange() },
+                onValueChange = { onNameChange(it) },
                 modifier = Modifier
                     .padding(16.dp),
                 label = {

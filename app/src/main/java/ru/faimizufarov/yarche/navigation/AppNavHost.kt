@@ -37,6 +37,10 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) 
             }
         }
 
-        composable(NavItems.HELLO_SCREEN) { HelloScreen() }
+        composable(NavItems.HELLO_SCREEN) {
+            HelloScreen(
+                navController = navController
+            )
+        }
     }
 }

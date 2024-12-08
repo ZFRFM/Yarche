@@ -9,7 +9,7 @@ import androidx.room.Update
 @Dao
 interface NameDao {
     @Query("SELECT * FROM name WHERE id= :id")
-    suspend fun getName(id: String): NameEntity
+    suspend fun getName(id: Int): NameEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertName(nameEntity: NameEntity)
@@ -18,5 +18,5 @@ interface NameDao {
     suspend fun updateName(nameEntity: NameEntity)
 
     @Query("SELECT COUNT(*) FROM name")
-    suspend fun checkNamePresence(): Boolean
+    suspend fun checkNamePresence(): Int
 }
